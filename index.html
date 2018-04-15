@@ -1,0 +1,30 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <script type="text/javascript" src="dist/sheep3d.js"></script>
+</head>
+
+<body>
+  <script>
+    var app = new SHEEP3D.Application()
+    document.body.appendChild(app.view)
+
+    var camera = SHEEP3D.Camera.createDefault(app.view)
+    camera.transform.position.z = 75
+
+    var model = SHEEP3D.Assimp.loadModel(app.gl, "assets/ship.fbx.json",
+      shader = new SHEEP3D.BasicShader(app.gl, camera))
+
+    app.draw = () => {
+      model.draw()
+    }
+
+    app.update = () => {
+      model.transform.rotation.rotateY(0.5)
+    }
+  </script>
+</body>
+
+</html>
